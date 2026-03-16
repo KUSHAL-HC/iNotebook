@@ -20,7 +20,47 @@ const NotesState = (props)=>{
           "tag": "youtube 2 updated 5",
           "date": "2026-03-16T14:43:15.348Z",
           "__v": 0
-        }
+        },{
+            "_id": "69b81703549f1ccf47107114",
+            "user": "69aae2ec57ab2c055507a8c2",
+            "title": "new note 5",
+            "description": "Play less games 5",
+            "tag": "youtube 2 updated 5",
+            "date": "2026-03-16T14:43:15.348Z",
+            "__v": 0
+          },{
+            "_id": "69b81703549f1ccf47107114",
+            "user": "69aae2ec57ab2c055507a8c2",
+            "title": "new note 5",
+            "description": "Play less games 5",
+            "tag": "youtube 2 updated 5",
+            "date": "2026-03-16T14:43:15.348Z",
+            "__v": 0
+          },{
+            "_id": "69b81703549f1ccf47107114",
+            "user": "69aae2ec57ab2c055507a8c2",
+            "title": "new note 5",
+            "description": "Play less games 5",
+            "tag": "youtube 2 updated 5",
+            "date": "2026-03-16T14:43:15.348Z",
+            "__v": 0
+          },{
+            "_id": "69b81703549f1ccf47107114",
+            "user": "69aae2ec57ab2c055507a8c2",
+            "title": "new note 5",
+            "description": "Play less games 5",
+            "tag": "youtube 2 updated 5",
+            "date": "2026-03-16T14:43:15.348Z",
+            "__v": 0
+          },{
+            "_id": "69b81703549f1ccf47107114",
+            "user": "69aae2ec57ab2c055507a8c2",
+            "title": "new note 5",
+            "description": "Play less games 5",
+            "tag": "youtube 2 updated 5",
+            "date": "2026-03-16T14:43:15.348Z",
+            "__v": 0
+          }
       ]
       const [notes , setNotes] = useState(notesInitial)
     return (
