@@ -3,17 +3,24 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Navbar from './components/Navbar.js';
 import Home from './components/Home.js';
 import About from './components/About.js';
+import NotesState from './context/notes/NotesState.js';
 
 function App() {
   return (
-      <BrowserRouter>
-        <Navbar/>
+    <>
+    <NotesState>
+    <BrowserRouter>
+      <Navbar/>
+      <div className="container">
         <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/About" element={<About />} />
-      </Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/About" element={<About />} />
+        </Routes>
+      </div>
 
-    </BrowserRouter>
+      </BrowserRouter>
+    </NotesState>
+    </>
   );
 }
 export default App;
