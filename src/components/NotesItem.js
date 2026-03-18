@@ -7,6 +7,7 @@ const NotesItem = (props) => {
                 <div className="card my-3">
                 <h5 className="card-title">{note.title}</h5>
                 <p className="card-text">{note.description}</p>
+                <button>edit</button>
                 </div>
         </div>
   )
