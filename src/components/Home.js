@@ -2,7 +2,7 @@ import Notes from "./Notes.js";
 
 const Home = () => {
   return (
-    <div class="container-fluid">
+    <div className="container-fluid">
       <h4>Add a Note</h4>
       <form action=""></form>
         <form>
