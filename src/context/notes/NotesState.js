@@ -2,71 +2,33 @@ import { useState} from "react";
 import NoteContext from "./NoteContext";
 
 const NotesState = (props)=>{
-    const  notesInitial = [
-        {
-          "_id": "69b052f99ea0bd4fcad8d682",
-          "user": "69aae2ec57ab2c055507a8c2",
-          "title": "new note 4",
-          "description": "Play less games 4",
-          "tag": "youtube 2 updated 4",
-          "date": "2026-03-10T17:20:57.249Z",
-          "__v": 0
-        },
-        {
-          "_id": "69b81703549f1ccf47107114",
-          "user": "69aae2ec57ab2c055507a8c2",
-          "title": "new note 5",
-          "description": "Play less games 5",
-          "tag": "youtube 2 updated 5",
-          "date": "2026-03-16T14:43:15.348Z",
-          "__v": 0
-        },{
-            "_id": "69b81703549f1ccf471071142",
-            "user": "69aae2ec57ab2c055507a8c2",
-            "title": "new note 5",
-            "description": "Play less games 5",
-            "tag": "youtube 2 updated 5",
-            "date": "2026-03-16T14:43:15.348Z",
-            "__v": 0
-          },{
-            "_id": "69b81703549f1ccf471071143",
-            "user": "69aae2ec57ab2c055507a8c2",
-            "title": "new note 5",
-            "description": "Play less games 5",
-            "tag": "youtube 2 updated 5",
-            "date": "2026-03-16T14:43:15.348Z",
-            "__v": 0
-          },{
-            "_id": "69b81703549f1ccf471071144",
-            "user": "69aae2ec57ab2c055507a8c2",
-            "title": "new note 5",
-            "description": "Play less games 5",
-            "tag": "youtube 2 updated 5",
-            "date": "2026-03-16T14:43:15.348Z",
-            "__v": 0
-          },{
-            "_id": "69b81703549f1ccf471071145",
-            "user": "69aae2ec57ab2c055507a8c2",
-            "title": "new note 5",
-            "description": "Play less games 5",
-            "tag": "youtube 2 updated 5",
-            "date": "2026-03-16T14:43:15.348Z",
-            "__v": 0
-          },{
-            "_id": "69b81703549f1ccf471071146",
-            "user": "69aae2ec57ab2c055507a8c2",
-            "title": "new note 5",
-            "description": "Play less games 5",
-            "tag": "youtube 2 updated 5",
-            "date": "2026-03-16T14:43:15.348Z",
-            "__v": 0
-          }
-      ]
+  const  host = "http://localhost:8080";
+    const  notesInitial = []
     const [notes , setNotes] = useState(notesInitial)
 
-    const addNote = (title,description,tag)=>{
+    const getNotes =async ()=>{
+
+      const response = await fetch(`${host}/api/notes/fetchallnotes` ,{
+        method:'GET',headers:{
+            'Content-Type':'application/json',
+            'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjlhYWUyZWM1N2FiMmMwNTU1MDdhOGMyIn0sImlhdCI6MTc3MjgwNzExNX0.vwqY-8_cKeXWB0QdhKzs4RrgVPkS5nlxzaKANTh2vpU'
+        }});
+        const json =await  response.json();
+        console.log(json);
+        setNotes(json);
+      
+    }
+
+
+    const addNote =async (title,description,tag)=>{
+
+      const response = await fetch(`${host}/api/notes/addnote` ,{
+        method:'POST',headers:{
+            'Content-Type':'application/json',
+            'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjlhYWUyZWM1N2FiMmMwNTU1MDdhOGMyIn0sImlhdCI6MTc3MjgwNzExNX0.vwqY-8_cKeXWB0QdhKzs4RrgVPkS5nlxzaKANTh2vpU'
+        },body: JSON.stringify({title,description,tag})});
         
-      console.log("Adding a new note");
+        
       const note={
         "_id": "69b052f99ea0bd4fcad8d6829",
         "user": "69aae2ec57ab2c055507a8c2",
@@ -79,12 +41,41 @@ const NotesState = (props)=>{
       setNotes(notes.concat(note))
     }
 
-    const deleteNote = ()=>{}
+    const deleteNote =async (id)=>{
+      
+      const newNotes = notes.filter((note)=>{return note._id !== id});
+      setNotes(newNotes);
+      const response = await fetch(`${host}/api/notes/deletenote/${id}` ,{
+        method:'DELETE',headers:{
+            'Content-Type':'application/json',
+            'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjlhYWUyZWM1N2FiMmMwNTU1MDdhOGMyIn0sImlhdCI6MTc3MjgwNzExNX0.vwqY-8_cKeXWB0QdhKzs4RrgVPkS5nlxzaKANTh2vpU'
+        }});
+        const json =  response.json();
+        console.log(json);
+      }
 
-    const editNote = ()=>{}
+    const editNote =async (id,title,description,tag)=>{
+
+          const response = await fetch(`${host}/api/notes/updatenote/${id}` ,{
+            method:'POST',headers:{
+                'Content-Type':'application/json',
+                'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjlhYWUyZWM1N2FiMmMwNTU1MDdhOGMyIn0sImlhdCI6MTc3MjgwNzExNX0.vwqY-8_cKeXWB0QdhKzs4RrgVPkS5nlxzaKANTh2vpU'
+            },body: JSON.stringify({title,description,tag})});
+            const json =  response.json();
+
+          for(let index = 0;index < notes.length;index++){
+            const element = notes[index];
+            if(element._id === id)
+            {
+              element.title = title;
+              element.description = description;
+              element.tag = tag;
+            }
+        }
+    }
 
     return (
-        <NoteContext.Provider value={{notes,setNotes,addNote, deleteNote,editNote}}>
+        <NoteContext.Provider value={{notes,setNotes,addNote, deleteNote,editNote,getNotes}}>
             {props.children}
         </NoteContext.Provider>
     );
