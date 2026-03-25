@@ -4,7 +4,6 @@ import NoteContext from '../context/notes/NoteContext.js';
 const NotesItem = (props) => {
     const context = useContext(NoteContext);
     const {deleteNote} = context;
-
     const {note,updateNote} = props;
   return (
         <div className="col-md-3">
@@ -13,11 +12,11 @@ const NotesItem = (props) => {
                     <p className="card-text">{note.description}</p>
 
                     <div className="d-flex gap-3">
-                      <button className="btn p-0 border-0 bg-transparent" onClick={() => deleteNote(note._id)}>
+                      <button className="btn p-0 border-0 bg-transparent" onClick={() =>{deleteNote(note._id);props.showAlert("Deleated successfully", "success");}}>
                         <i className="fa-regular fa-trash-can"></i>
                       </button>
                     
-                      <button className="btn p-0 border-0 bg-transparent" onClick={() =>{updateNote(note)}}>
+                      <button className="btn p-0 border-0 bg-transparent" onClick={() =>{updateNote(note);}}>
                           <i className="fa-solid fa-pen-to-square"></i>
                       </button>
                     </div>
