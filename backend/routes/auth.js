@@ -44,9 +44,7 @@ router.post('/createuser',[
       }
       const authtoken = jwt.sign(data, JWT_SECRET);
       success = true;
-
-      success = true;
-      res.json({authtoken});
+      res.json({success,authtoken});
     } catch (err) {
       res.status(500).json({success, error: "Server error" });
     }

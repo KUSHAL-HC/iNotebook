@@ -9,7 +9,13 @@ const Signup = (props) => {
         const handelSubmit =async (e)=>{
             e.preventDefault();
             console.log(credientials);
-            const {name,email,password} = credientials;
+            const {name,email,password,cpassword} = credientials;
+
+            if (password !== cpassword) {
+                props.showAlert("Passwords do not match", "danger");
+                return;
+            }
+
             const response = await fetch("http://localhost:8080/api/auth/createuser" ,{
                 method:'POST',headers:{
                     'Content-Type':'application/json'
@@ -32,6 +38,7 @@ const Signup = (props) => {
 
   return ( 
     <div className='container'>
+        <h2>Create An Account To Use iNotebook</h2>
         <form onSubmit={handelSubmit}>
             <div className="mb-3">
                 <label htmlFor="name" className="form-label">Name</label>
@@ -43,11 +50,11 @@ const Signup = (props) => {
             </div>
             <div className="mb-3">
                 <label htmlFor="password" className="form-label">Password</label>
-                <input type="password" className="form-control" name="password" id="exampleInputPasswpasswordord1" onChange={onchange} minLength={5} required/>
+                <input type="password" className="form-control" name="password" id="password" onChange={onchange} minLength={5} required/>
             </div>
             <div className="mb-3">
                 <label htmlFor="cpassword" className="form-label">Confirm Password</label>
-                <input type="password" className="form-control" name="password" id="cpassword" onChange={onchange} minLength={5} required/>
+                <input type="password" className="form-control" name="cpassword" id="cpassword" onChange={onchange} minLength={5} required/>
             </div>
             
             <button type="submit" className="btn btn-primary">Submit</button>

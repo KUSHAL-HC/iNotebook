@@ -15,11 +15,11 @@ const Login = (props) => {
             },body: JSON.stringify({email:credientials.email, password:credientials.password})});
             const json = await response.json();
             console.log(json);
-            if(json.success)
+            if(response.ok)
             {
                 localStorage.setItem('token',json.authtoken);
                 navigate("/");
-                props.showAlert("Loged in Successfully","success")
+                props.showAlert("Loged in Successfully","success");
             }else{
                 props.showAlert("Invalid Credentials","danger");
             }
@@ -32,6 +32,7 @@ const Login = (props) => {
 
   return (
     <div>
+       <h2>Login to Continue with iNotebook</h2>
        <form onSubmit={handelSubmit}>
             <div className="mb-3">
                 <label htmlFor="email" className="form-label">Email address</label>
